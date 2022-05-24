@@ -12,8 +12,7 @@
 		<ul>
 			<% products.forEach(product => { %>
 			<li><%=product.name%></li>
-				<li><a href="/store/<%=product._id%>"><img src="<%=product.img%>"/></a>
-			</li>
+				<a href="/store/<%=product.id%>"><img src="<%=product.img%>"/></a>
 			<% }) %>
 		</ul>
 	</body>
