@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Store Index</title>
-		<h1>Store</h1>
+		<h1>Grocery Store</h1>
 		<a href="/store/new/">New Product</a>
 	</head>
 	<body>
@@ -13,13 +13,23 @@
 			<% products.forEach(product => { %>
 				<li>
 				<%=product.name%>
+				</br>
 				<a href="/store/<%=product._id%>"><img src="<%=product.img%>"/></a>
-				<!-- Delete Button (Not functional yet) -->
-				<!-- <form action="/store/<%=product._id %>?_method=DELETE" method="POST">
-                    <input type="submit" value="DELETE" />
-					</form> -->
+				<form action="/store/<%= product._id %>?_method=DELETE" method="POST" >
+					<input type="submit" value="DELETE" />
+				</form>
+                <a href="/store/<%=product._id %>/edit">Edit Product</a>
 				</li>
 		<% }) %>
 			</ul>
 	</body>
 </html>
+
+<style>
+	ul {
+		list-style-type: none;
+	}
+	img {
+		max-width: 200px;
+	}
+</style>
