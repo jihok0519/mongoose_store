@@ -18,7 +18,13 @@
     Price: <%=product.price%>$
 </br>
     <%=product.qty%> remaining
-
-    <a href="/store/edit/">Edit Product</a>
+</br>
+    <a href="/store/<%=product._id%>/edit/">Edit Product</a>
 </body>
 </html>
+
+<style>
+	img {
+		max-width: 400px;
+	}
+</style>
