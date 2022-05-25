@@ -57,6 +57,7 @@ app.get('/store/new/', (req, res) => {
 // Create
 app.post('/store/', (req, res) => {
     Product.create(req.body, (error, createdProduct) => {
+        console.log(error, createdProduct);
         res.redirect('/store/');
     });
 });

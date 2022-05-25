@@ -5,7 +5,7 @@ module.exports = [{
     price: 5,
     qty: 100
     },
-        {
+    {
     name: 'Beans',
     description: 'A small pile of beans. Buy more beans for a big pile of beans.',
     img: 'https://imgur.com/LEHS8h3.png',
