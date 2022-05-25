@@ -1,30 +1,30 @@
 module.exports = [{
-    name: 'blueberry',
-    description: 'delicious blueberries',
-    img: '/images/blueberries.jpg',
+    name: 'Blueberries',
+    description: 'The Bluest of berries',
+    img: 'https://i.imgur.com/Jte0enG.jpg',
     price: 5,
     qty: 100
     },
     {
-    name: 'Beans',
-    description: 'A small pile of beans. Buy more beans for a big pile of beans.',
-    img: 'https://imgur.com/LEHS8h3.png',
-    price: 5,
-    qty: 99
+    name: 'Mangoes',
+    description: 'Overly Ripe Mangoes',
+    img: 'https://i.imgur.com/7HUu5sx.jpg',
+    price: 10,
+    qty: 50
     }, 
     {
-    name: 'Bones',
-    description: "It's just a bag of bones.",
-    img: 'https://imgur.com/dalOqwk.png',
-    price: 25,
-    qty: 0
+    name: 'Kiwis',
+    description: "We make keys for our kiwis",
+    img: 'https://i.imgur.com/XNwT8mh.jpg',
+    price: 7,
+    qty: 30
     }, 
     {
-    name: 'Bins',
-    description: 'A stack of colorful bins for your beans and bones.',
-    img: 'https://imgur.com/ptWDPO1.png',
-    price: 7000,
-    qty: 1
+    name: 'Pomegranate',
+    description: 'Not to be confused with Pomegranite',
+    img: 'https://i.imgur.com/tc2NoxT.jpg',
+    price: 8,
+    qty: 20
     },
 ],
 (error, data) => {
