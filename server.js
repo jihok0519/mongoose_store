@@ -29,39 +29,48 @@ app.use(express.static("./public/"));
 app.get('/books/seed/', (req, res) => {
     Product.deleteMany({}, (error, allProducts) => {});
     Product.create(productSeed, (error, data) => {
-        res.redirect('/store')
-    })
+        res.redirect('/store');
+    });
 });
 
 // Index
 app.get('/store/', (req, res) => {
     Product.find({}, (error, allProducts) => {
-    res.render('index.ejs', {
+        res.render('index.ejs', {
         products: allProducts,
         });
     });
 });
 // New
+app.get('/store/new/', (req, res) => {
+    res.render("new.ejs");
+})
 
 // Delete
+// app.delete("/store/:id/", (req, res) => {
+//     Product.splice(req.params.id, 1)
+// 	res.redirect("/store/");
+// });
 
 // Update
-app.get('/store/new/', (req, res) => {
-    res.render('new.ejs');
-});
 
 // Create
 app.post('/store/', (req, res) => {
     Product.create(req.body, (error, createdProduct) => {
-        res.redirect('/store');
+        res.redirect('/store/');
     });
 });
 
 // Edit
+app.get("/store/:id/edit/", (req, res) => {
+    res.render("edit.ejs", {
+        products: Product[req.params.id],
+	});
+});
 
 // Show
 app.get('/store/:id', (req, res) => {
-    Product.findById(req.params.id, (err, foundProduct) => {
+    Product.findById(req.params.id, (error, foundProduct) => {
         res.render('show.ejs', {
             product: foundProduct,
         });
