@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/product.js');
 const productSeed = require('./models/productSeed.js');
 const db = mongoose.connection;
+const methodOverride = require('method-override');
 
 // Connect to MongoDB Atlas
 mongoose.connect(process.env.DATABASE_URL, {
@@ -22,14 +23,15 @@ db.on('disconnected', () => console.log('Mongo disconnected'));
 // Body parser middleware: gives access to req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("./public/"));
+app.use(methodOverride('_method'));
 
 // ROUTES
 
 // Seed
-app.get('/books/seed/', (req, res) => {
+app.get('/store/seed/', (req, res) => {
     Product.deleteMany({}, (error, allProducts) => {});
     Product.create(productSeed, (error, data) => {
-        res.redirect('/store');
+        res.redirect('/store/');
     });
 });
 
@@ -47,12 +49,26 @@ app.get('/store/new/', (req, res) => {
 })
 
 // Delete
-// app.delete("/store/:id/", (req, res) => {
-//     Product.splice(req.params.id, 1)
-// 	res.redirect("/store/");
-// });
+app.delete("/store/:id", (req, res) => {
+	Product.findByIdAndRemove(req.params.id, (err, data) => {
+		res.redirect("/store/");
+    });
+});
 
 // Update
+app.put('/store/:id/', (req, res) => {
+    Product.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            // override previous information
+            new: true,
+        },
+        (error, updatedBook) => {
+            res.redirect(`/store/${req.params.id}`)
+        }
+    )
+});
 
 // Create
 app.post('/store/', (req, res) => {
@@ -64,13 +80,15 @@ app.post('/store/', (req, res) => {
 
 // Edit
 app.get("/store/:id/edit/", (req, res) => {
-    res.render("edit.ejs", {
-        products: Product[req.params.id],
+   Product.findById(req.params.id, (error, foundProduct) => {
+       res.render("edit.ejs", {
+           products: foundProduct,
+        });
 	});
 });
 
 // Show
-app.get('/store/:id', (req, res) => {
+app.get('/store/:id/', (req, res) => {
     Product.findById(req.params.id, (error, foundProduct) => {
         res.render('show.ejs', {
             product: foundProduct,
