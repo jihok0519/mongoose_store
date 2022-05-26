@@ -19,6 +19,14 @@
 </br>
     <%=product.qty%> remaining
 </br>
+<form>
+    <% if (product.qty === 0) { %>
+        <input type="submit" name="qty" value="BUY"/>
+        <% product.qty = "out of stock" %>
+        <% } else { %>
+            <% product.qty = "buy" %>
+            <% } %>
+        </form>
     <a href="/store/<%=product._id%>/edit/">Edit Product</a>
 </body>
 </html>
