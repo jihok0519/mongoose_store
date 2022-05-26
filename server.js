@@ -89,13 +89,12 @@ app.get("/store/:id/edit/", (req, res) => {
 
 // Show
 app.get('/store/:id/', (req, res) => {
-    Product.findById(req.params.id, (error, foundProduct) => {
+    Product.findById(req.params.id, (error,  foundProduct) => {
         res.render('show.ejs', {
             product: foundProduct,
         });
     });
 });
-
 
 // Listener
 const PORT = process.env.PORT;
