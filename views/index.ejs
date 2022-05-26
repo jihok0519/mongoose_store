@@ -10,22 +10,31 @@
 	</head>
 	<body>
 		<ul>
+			<div>
 			<% products.forEach(product => { %>
 				<li>
 				<%=product.name%>
 				</br>
 				<a href="/store/<%=product._id%>"><img src="<%=product.img%>"/></a>
+				</br>
+				<%=product.price%>$
 				<form action="/store/<%= product._id %>?_method=DELETE" method="POST" >
 					<input type="submit" value="DELETE" />
 				</form>
                 <a href="/store/<%=product._id %>/edit">Edit Product</a>
 				</li>
 		<% }) %>
+			</div>
 			</ul>
 	</body>
 </html>
 
 <style>
+	li {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-around;
+	}
 	ul {
 		list-style-type: none;
 	}
