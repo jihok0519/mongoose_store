@@ -10,7 +10,7 @@ module.exports = [{
     description: 'Overly Ripe Mangoes',
     img: 'https://i.imgur.com/7HUu5sx.jpg',
     price: 10,
-    qty: 50
+    qty: 0
     }, 
     {
     name: 'Kiwis',
